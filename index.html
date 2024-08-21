@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Registration Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('Untitled design.png') center/cover no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .form-step {
+            padding: 30px;
+            display: none;
+        }
+
+        .form-step-active {
+            display: block;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-header h2 {
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 40px 10px 10px; /* Space for the icon */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-actions button:hover {
+            opacity: 0.9;
+        }
+
+        .form-actions button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tick-mark-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .tick-mark-container .tick-mark {
+            width: 100px;
+            height: 100px;
+            border: 5px solid #28a745;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tick-mark-container .tick-mark::before {
+            content: '';
+            position: absolute;
+            border: solid #28a745;
+            border-width: 0 5px 5px 0;
+            transform: rotate(45deg);
+            width: 20px;
+            height: 40px;
+            top: 20px;
+            left: 30px;
+        }
+
+        .tick-mark-container .tick-mark::after {
+            content: '';
+            position: absolute;
+            border: solid #28a745;
+            border-width: 0 5px 5px 0;
+            transform: rotate(45deg);
+            width: 40px;
+            height: 20px;
+            top: 30px;
+            left: 20px;
+        }
+
+        .animation {
+            display: none;
+            /* Add your animation styles here */
+        }
+
+        .animation.active {
+            display: block;
+            /* Add animation styles here */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="form-step-1" class="form-step form-step-active">
+            <div class="form-header">
+                <h2>Personal Information</h2>
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" placeholder="Enter your first name">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter your last name">
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+            <div class="form-actions">
+                <button type="button" id="next-1">Next Step</button>
+            </div>
+        </div>
+
+        <div id="form-step-2" class="form-step">
+            <div class="form-header">
+                <h2>Contact Information</h2>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter your address">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" placeholder="Enter your city">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" id="state" placeholder="Enter your state">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" placeholder="Enter your country">
+            </div>
+            <div class="form-group">
+                <label for="zipcode">Postal/Zip Code</label>
+                <input type="text" id="zipcode" placeholder="Enter your postal/zip code">
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-2">Back</button>
+                <button type="button" id="next-2">Next Step</button>
+            </div>
+        </div>
+
+        <div id="form-step-3" class="form-step">
+            <div class="form-header">
+                <h2>Security Information</h2>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password">
+            </div>
+            <div class="form-actions">
+                <button type="button" id="back-3">Back</button>
+                <button type="button" id="submit">Submit</button>
+            </div>
+        </div>
+
+        <div id="review-step" class="form-step">
+            <div class="form-header">
+                <h2>Review Your Details</h2>
+            </div>
+            <div id="review-details"></div>
+            <div class="form-actions">
+                <button type="button" id="back-review">Back</button>
+                <button type="button" id="confirm-submit">Confirm and Complete</button>
+            </div>
+        </div>
+
+        <div class="tick-mark-container">
+            <div class="tick-mark">
+                <!-- You can add an animation here if needed -->
+                <div id="animation" class="animation"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const next1 = document.getElementById('next-1');
+        const next2 = document.getElementById('next-2');
+        const back2 = document.getElementById('back-2');
+        const back3 = document.getElementById('back-3');
+        const submit = document.getElementById('submit');
+        const backReview = document.getElementById('back-review');
+        const confirmSubmit = document.getElementById('confirm-submit');
+        const reviewStep = document.getElementById('review-step');
+        const reviewDetails = document.getElementById('review-details');
+        const tickMarkContainer = document.querySelector('.tick-mark-container');
+        const container = document.querySelector('.container');
+
+        const step1 = document.getElementById('form-step-1');
+        const step2 = document.getElementById('form-step-2');
+        const step3 = document.getElementById('form-step-3');
+
+        // Function to show review step
+        function showReviewStep() {
+            reviewDetails.innerHTML = `
+                <p><strong>First Name:</strong> ${document.getElementById('firstName').value}</p>
+                <p><strong>Last Name:</strong> ${document.getElementById('lastName').value}</p>
+                <p><strong>Date of Birth:</strong> ${document.getElementById('dob').value}</p>
+                <p><strong>Phone Number:</strong> ${document.getElementById('phone').value}</p>
+                <p><strong>Address:</strong> ${document.getElementById('address').value}</p>
+                <p><strong>City:</strong> ${document.getElementById('city').value}</p>
+                <p><strong>State:</strong> ${document.getElementById('state').value}</p>
+                <p><strong>Country:</strong> ${document.getElementById('country').value}</p>
+                <p><strong>Postal/Zip Code:</strong> ${document.getElementById('zipcode').value}</p>
+                <p><strong>Email:</strong> ${document.getElementById('email').value}</p>
+                <p><strong>Username:</strong> ${document.getElementById('username').value}</p>
+            `;
+            reviewStep.classList.add('form-step-active');
+        }
+
+        // Event Listeners
+        next1.addEventListener('click', () => {
+            if (validateStep1()) {
+                step1.classList.remove('form-step-active');
+                step2.classList.add('form-step-active');
+            }
+        });
+
+        next2.addEventListener('click', () => {
+            if (validateStep2()) {
+                step2.classList.remove('form-step-active');
+                step3.classList.add('form-step-active');
+            }
+        });
+
+        back2.addEventListener('click', () => {
+            step2.classList.remove('form-step-active');
+            step1.classList.add('form-step-active');
+        });
+
+        back3.addEventListener('click', () => {
+            step3.classList.remove('form-step-active');
+            step2.classList.add('form-step-active');
+        });
+
+        submit.addEventListener('click', () => {
+            if (validateStep3()) {
+                showReviewStep();
+                step3.classList.remove('form-step-active');
+            }
+        });
+
+        backReview.addEventListener('click', () => {
+            reviewStep.classList.remove('form-step-active');
+            step3.classList.add('form-step-active');
+        });
+
+        confirmSubmit.addEventListener('click', () => {
+            alert('Registration Complete');
+            tickMarkContainer.style.display = 'flex';
+            // Optionally, you can add any animation you want here
+        });
+
+        // Validation Functions
+        function validateStep1() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const dob = document.getElementById('dob').value;
+
+            if (firstName.length < 2 || firstName.length > 30) {
+                alert("Enter a valid first name (2-30 letters).");
+                return false;
+            }
+
+            if (lastName.length < 2 || lastName.length > 30) {
+                alert("Enter a valid last name (2-30 letters).");
+                return false;
+            }
+
+            if (!dob) {
+                alert("Enter a valid date of birth.");
+                return false;
+            }
+
+            const age = new Date().getFullYear() - new Date(dob).getFullYear();
+            if (age < 18) {
+                alert("You must be at least 18 years old.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateStep2() {
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const zipcode = document.getElementById('zipcode').value.trim();
+
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Enter a valid 10-digit phone number.");
+                return false;
+            }
+
+            if (address.length < 5 || address.length > 100) {
+                alert("Enter a valid address (5-100 characters).");
+                return false;
+            }
+
+            if (city.length < 2 || city.length > 50) {
+                alert("Enter a valid city (2-50 characters).");
+                return false;
+            }
+
+            if (!/^\d{5,10}$/.test(zipcode)) {
+                alert("Enter a valid postal/zip code.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateStep3() {
+            const email = document.getElementById('email').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert("Enter a valid email address.");
+                return false;
+            }
+
+            if (username.length < 4 || username.length > 20) {
+                alert("Enter a valid username (4-20 characters).");
+                return false;
+            }
+
+            if (password.length < 6 || password.length > 20) {
+                alert("Enter a valid password (6-20 characters).");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
